@@ -4,7 +4,7 @@ version: 2
 project_name: example-rust-split-merge
 
 partial:
-  by: target
+  by: goos
 
 builds:
   - id: example-rust-split-merge
@@ -15,11 +15,15 @@ builds:
     targets:
       - x86_64-unknown-linux-gnu
       - aarch64-unknown-linux-gnu
+      - x86_64-apple-darwin
+      - aarch64-apple-darwin
       - x86_64-pc-windows-msvc
       - aarch64-pc-windows-msvc
 
-# darwin is built by .goreleaser.darwin.yaml: universal_binaries runs during
-# --split, so both darwin targets have to be built in the same run.
+universal_binaries:
+  - ids:
+      - example-rust-split-merge
+    replace: true
 
 archives:
   - formats:
@@ -34,3 +38,10 @@ checksum:
 
 changelog:
   sort: asc
+
+# runs after a real release, not on snapshots: it downloads the published
+# assets and checks them against the published checksums
+verify:
+  commands:
+    - cmd: sha256sum
+      args: ["-c", "checksums.txt"]
