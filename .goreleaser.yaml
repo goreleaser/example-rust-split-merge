@@ -15,16 +15,11 @@ builds:
     targets:
       - x86_64-unknown-linux-gnu
       - aarch64-unknown-linux-gnu
-      - x86_64-apple-darwin
-      - aarch64-apple-darwin
       - x86_64-pc-windows-msvc
       - aarch64-pc-windows-msvc
 
-universal_binaries:
-  - id: example-rust-split-merge
-    ids:
-      - example-rust-split-merge
-    replace: true
+# darwin is built by .goreleaser.darwin.yaml: universal_binaries runs during
+# --split, so both darwin targets have to be built in the same run.
 
 archives:
   - formats:
