@@ -23,7 +23,7 @@ of its architectures with plain `cargo build` (`command: build`):
 
 | Runner           | Targets                                                  | What it needs                                |
 | ---------------- | -------------------------------------------------------- | -------------------------------------------- |
-| `ubuntu-latest`  | `x86_64-unknown-linux-gnu`, `aarch64-unknown-linux-gnu`  | `gcc-aarch64-linux-gnu` as the arm64 linker  |
+| `ubuntu-latest`  | `x86_64-unknown-linux-gnu`, `aarch64-unknown-linux-gnu`  | `gcc-aarch64-linux-gnu` and `libc6-dev-arm64-cross` |
 | `macos-latest`   | `x86_64-apple-darwin`, `aarch64-apple-darwin`            | Xcode SDK, already installed                 |
 | `windows-latest` | `x86_64-pc-windows-msvc`, `aarch64-pc-windows-msvc`      | MSVC x64 and ARM64 tools, already installed  |
 
