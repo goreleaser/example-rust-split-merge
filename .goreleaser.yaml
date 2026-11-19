@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+version: 2
+
+project_name: example-rust-split-merge
+
+partial:
+  by: target
+
+builds:
+  - id: example-rust-split-merge
+    builder: rust
+    tool: cargo
+    command: build
+    binary: example-rust-split-merge
+    targets:
+      - x86_64-unknown-linux-gnu
+      - aarch64-unknown-linux-gnu
+      - x86_64-apple-darwin
+      - aarch64-apple-darwin
+      - x86_64-pc-windows-msvc
+      - aarch64-pc-windows-msvc
+
+universal_binaries:
+  - id: example-rust-split-merge
+    ids:
+      - example-rust-split-merge
+    replace: true
+
+archives:
+  - formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
