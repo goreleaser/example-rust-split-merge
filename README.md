@@ -58,6 +58,10 @@ The `verify` section of `.goreleaser.yaml` is a GoReleaser Pro feature. After
 runs `sha256sum -c checksums.txt` against them. It only runs on real releases.
 Snapshots publish nothing, so there is nothing to verify.
 
+`verify` downloads the assets from their public release URLs without
+authentication. It needs a public repository: on a private repository the
+downloads return `404 Not Found`.
+
 ## Use it in your repo
 
 1. Copy `.goreleaser.yaml` and `.github/workflows/release.yml`. Change the
